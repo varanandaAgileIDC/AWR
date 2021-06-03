@@ -1,0 +1,34 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Vehicle List
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list lines="none" *ngIf="customerVehicles.length!=0" lines="full" style="background: transparent;">
+      <ion-item style="--background:transparent;border-radius: 20px;"
+        *ngFor="let vehicle of customerVehicles; index as i;" (click)="selectVehicle(vehicle)">
+        <!-- <ion-avatar slot="end"> -->
+          <div slot="end" style="margin-right: -20px;object-fit: contain;width: 150px;height:100%;">
+          <img style="width: 150px;height:100%;" *ngIf="vehicle['vehicleimages'].length>0" [src]="apiService.base_path+'storage/'+vehicle['vehicleimages'][0]['image_url']"/>
+
+          <!-- <img style="width: 150px;height:100%;" *ngIf="vehicle['vehicleimages'].length==0" src="/assets/noimage.png"/> -->
+
+        </div>
+        <!-- </ion-avatar> -->
+        <ion-label style="white-space:normal;">
+          <h2 style="color:#1D97DB;"> <b> {{vehicle.name}} </b></h2>
+          <h3>{{vehicle["vehiclemodel"].description}}</h3>
+          <h3>{{vehicle["vehiclemodel"].model_name}}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  </ion-content>

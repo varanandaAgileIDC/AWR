@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "126782918718",
+    "project_id": "awrshiftcarrental",
+    "storage_bucket": "awrshiftcarrental.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126782918718:android:ba158a9511a083a23cc16f",
+        "android_client_info": {
+          "package_name": "com.agile.awr.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126782918718-8ubpk0d0jolhfl6abipchfqdq12g9v1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo6rmhtdzYtl46IwQoB0NnoFybF2abefE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126782918718-8ubpk0d0jolhfl6abipchfqdq12g9v1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

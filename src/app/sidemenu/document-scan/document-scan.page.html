@@ -1,0 +1,57 @@
+<ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+
+    <img *ngIf="!image" style="height: 100%;"
+    src="/assets/profile.png" />
+
+
+    <img *ngIf="image" style="height: 100%;"
+    [src]="image"/>
+
+  </ion-content>
+</ion-content>
+  <ion-footer class="ion-no-border" style="text-align: center;background-color:#094166;">
+    <p style="color:white;margin-bottom:0px;font-size: 14px;margin-left: 10px;margin-right: 10px;background-color:#094166;">Please hold out phone steady and straight over a document to capture it in high quality.</p>
+    <ion-toolbar style="--background:#094166;">
+
+      <!-- <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div style="text-align: center;">
+              <ion-button full icon-left class="scanBtn" (click)="camera()">
+                <ion-icon name="camera-outline"></ion-icon>&nbsp;
+                Camera
+              </ion-button>
+              </div>
+          </ion-col>
+          <ion-col>
+            <div style="text-align: center;">
+              <ion-button full icon-left class="scanBtn" (click)="gallery()">
+                <ion-icon name="images-outline"></ion-icon>&nbsp;
+                Gallery
+              </ion-button>
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+
+    </ion-toolbar>
+  </ion-footer>
+
+  <ion-footer *ngIf="image" class="ion-no-border" style="text-align: center;background-color:#094166;">
+    <ion-toolbar  style="--background:#094166;">
+      <div style="text-align: center;">
+        <ion-button full icon-left class="scanBtn" (click)="upload()">
+          <ion-icon name="cloud-upload-outline"></ion-icon>&nbsp;
+          Upload
+        </ion-button>
+        </div>
+    </ion-toolbar>
+  </ion-footer>

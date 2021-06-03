@@ -1,0 +1,53 @@
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Complaint List
+      </ion-title>
+      <ion-button class="notifications-btn" (click)="serviceRequest()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+
+    <div id="container" *ngIf="complaintList.length==0">No data found</div>
+
+
+    <ion-list lines="none" *ngIf="complaintList.length!=0" lines="full" style="background: transparent;">
+     
+      <ion-item style="--background:transparent;border-radius: 20px;"
+        *ngFor="let complaint of complaintList; index as i;"
+      >
+        <ion-label>
+          <ion-badge slot="start">#{{complaint.vehicleNumber}}</ion-badge>
+         
+          <h3>{{complaint.date | date: 'dd-MM-yyyy hh:mm a'}}</h3>
+          <h3>{{complaint.description}}</h3>
+  
+        </ion-label>
+      </ion-item>
+ 
+    </ion-list>
+
+       
+        <div style="text-align: center;" *ngIf="complaintList.length!=0">
+          <ion-button class="submitBtn">
+            <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+            Submit
+          </ion-button>
+
+        </div>
+     
+ 
+  
+  </ion-content>
+  
+  </ion-content>
+  

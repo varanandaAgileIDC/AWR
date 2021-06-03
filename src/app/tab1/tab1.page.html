@@ -1,0 +1,114 @@
+<ion-content>
+  <!-- <ion-header [transparent]="true"> -->
+    <ion-header>
+    <ion-toolbar>
+      <!-- <ion-button class="menu-btn">
+        <ion-icon name="menu-outline"></ion-icon>
+      </ion-button> -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        RENT A CAR
+      </ion-title>
+      <ion-button class="notifications-btn">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  <!-- <ion-button expand="full" (click)="logout()">Logout</ion-button> -->
+
+  <ion-content>
+    <form>
+
+      <div class="input-group">
+        <div class="row">
+          <div class="col col-10">
+            <div class="input-field">
+              <ion-item class="search-field">
+                <ion-icon name="search-outline"></ion-icon>
+                <ion-input placeholder="Search"></ion-input>
+              </ion-item>
+            </div>
+          </div>
+          <div class="col col-2">
+            <ion-button class="ion-color-primary filter-btn" type="submit" expand="block"><ion-icon name="options-outline"></ion-icon></ion-button>
+          </div>
+        </div> 
+      </div>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button class="ion-color-transparent active" type="button" expand="block"><ion-icon name="radio-button-on-outline"></ion-icon> Self Pick Up</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="ion-color-transparent" type="button" expand="block"><ion-icon name="radio-button-off-outline"></ion-icon> Delivery</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="input-field location-field">
+              <div class="blue-bg-input"><ion-icon name="location-outline"></ion-icon></div>
+              <ion-item (click)="pickUpLocation()">
+                <ion-label position="floating">Pick Up Location</ion-label>
+                <ion-input type="text" readonly [(ngModel)]="apiService.pickUpLocation" [ngModelOptions]="{standalone: true}"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="input-field location-field">
+              <div class="blue-bg-input"><ion-icon name="location-outline"></ion-icon></div>
+              <ion-item (click)="dropOffLocation()">
+                <ion-label position="floating">Drop Off Location</ion-label>
+                <ion-input type="text" readonly [(ngModel)]="apiService.dropOffLocation" [ngModelOptions]="{standalone: true}"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="input-field location-field">
+              <div class="blue-bg-input"><ion-icon name="calendar-outline"></ion-icon></div>
+              <ion-item (click)="startTrip()">
+                <ion-label position="floating">Start Trip</ion-label>
+                <ion-input type="text" readonly [(ngModel)]="startField" [ngModelOptions]="{standalone: true}"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="input-field location-field">
+              <div class="blue-bg-input"><ion-icon name="calendar-outline"></ion-icon></div>
+              <ion-item (click)="endTrip()">
+                <ion-label position="floating">End Trip</ion-label>
+                <ion-input type="text" readonly [(ngModel)]="endField" [ngModelOptions]="{standalone: true}"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="input-field location-field">
+              <ion-button class="ion-color-primary m-2" type="button" expand="block">FIND CAR</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+    </form>
+
+    <!-- <p style="color:white;margin-left: 20px;" *ngIf="apiService.matrixDistance && apiService.matrixTime"> Distance : {{apiService.matrixDistance}} <br> Duration : {{apiService.matrixTime}}</p> -->
+
+  </ion-content>
+
+</ion-content>

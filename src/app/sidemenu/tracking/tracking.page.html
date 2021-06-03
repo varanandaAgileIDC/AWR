@@ -1,0 +1,49 @@
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Tracking
+      </ion-title>
+      <ion-button class="notifications-btn">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+    <div style="text-align: center;">
+    <ion-button full icon-left (click)="startTracking()" *ngIf="!isTracking" class="trackBtn">
+      <ion-icon name="locate"></ion-icon>
+      Start Tracking
+    </ion-button>
+  <ion-button full color="danger" icon-left (click)="stopTracking()" *ngIf="isTracking" class="trackBtn">
+      <ion-icon name="hand"></ion-icon>
+      Stop Tracking
+  </ion-button>
+</div>
+  
+  <div class="map-wrapper">
+    <div #map id="map"></div>
+  </div>
+  
+  <ion-list>
+    <!-- <ion-list-header style="color:black;">Previous Tracks</ion-list-header> -->
+ 
+    <ion-button slot="start" class="viewRoute" style="margin-left: 20px;">Previous Tracks</ion-button>
+    <ion-item *ngFor="let route of previousTracks">
+     <p style="font-size: 12px;">{{ route.finished | date }}, {{ route.path.length }} Waypoints </p>
+      <ion-button slot="end" (click)="showHistoryRoute(route.path)" class="viewRoute">View Route</ion-button>
+    </ion-item>
+  </ion-list>
+  
+
+  <!-- <p style="color: white;margin-left: 20px;">Distance : {{matrixDistance}}, Time : {{matrixTime}} </p> -->
+  
+  </ion-content>
+  
+  </ion-content>

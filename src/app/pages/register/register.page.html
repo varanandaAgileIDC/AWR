@@ -1,0 +1,698 @@
+<div>
+  <img src="../../../assets/login-banner.png" style="margin-top: -2px;"/>
+</div>
+
+<ion-content>
+  <h5>Let's Go Anywhere, Anytime</h5>
+
+  <ion-segment value="corporate" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="personal" class="segmentBtn">
+      <ion-label>Personal</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="corporate" class="segmentBtn">
+      <ion-label>Corporate</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <form [formGroup]="registerForm1" (ngSubmit)="onSubmit1()" *ngIf="layoutChange=='corporate'">
+
+    <div class="input-group">
+
+      <!-- <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Contact Name</ion-label>
+          <ion-input formControlName="contactName"></ion-input>
+        </ion-item>
+      </div>
+
+      <div *ngIf="submitted && f1.contactName.errors" class="invalid-feedback">
+        <div *ngIf="f1.contactName.errors.required">Contact Name is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Contact Title</ion-label>
+          <ion-input formControlName="contactTitle"></ion-input>
+        </ion-item>
+      </div> -->
+
+      <div class="input-field">
+
+        <ion-row>
+          <ion-col size="4">
+
+            <ion-select
+            class="selection"
+            interface="popover"
+            [(ngModel)]="prefix"
+            placeholder="{{prefix}}" [ngModelOptions]="{standalone: true}"
+            (ionChange)="selectPrefix($event)"
+          >
+            <ion-select-option
+            *ngFor="let p of prefixes; index as i;"
+              [value]="p.name">
+             <div>
+              {{p.name}}
+             </div>
+              </ion-select-option>
+          </ion-select>
+
+          </ion-col>
+
+          <ion-col size="8">
+
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="firstName"></ion-input>
+        </ion-item>
+
+         </ion-col>
+
+
+        </ion-row>
+
+      </div>
+      <div *ngIf="submitted && f1.firstName.errors" class="invalid-feedback">
+        <div *ngIf="f1.firstName.errors.required">First Name is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="lastName"></ion-input>
+        </ion-item>
+      </div>
+
+      <div *ngIf="submitted && f1.lastName.errors" class="invalid-feedback">
+        <div *ngIf="f1.lastName.errors.required">Last Name is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Company Name</ion-label>
+          <ion-input formControlName="companyName"></ion-input>
+        </ion-item>
+      </div>
+
+      <div *ngIf="submitted && f1.companyName.errors" class="invalid-feedback">
+        <div *ngIf="f1.companyName.errors.required">Company Name is required</div>
+      </div>
+
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Position</ion-label>
+          <ion-input formControlName="position"></ion-input>
+        </ion-item>
+      </div>
+
+      <div *ngIf="submitted && f1.position.errors" class="invalid-feedback">
+        <div *ngIf="f1.position.errors.required">Position is required</div>
+      </div>
+
+      <!-- <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Debitor Code</ion-label>
+          <ion-input formControlName="debitorCode"></ion-input>
+        </ion-item>
+      </div>
+   -->
+
+      <div class="input-field">
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-select
+            class="selection"
+            interface="popover"
+            [(ngModel)]="mobileCode"
+            placeholder="{{mobileCode}}" [ngModelOptions]="{standalone: true}"
+            (ionChange)="selectMobilecode($event)"
+          >
+            <ion-select-option
+            *ngFor="let code of mobileCodes; index as i;"
+              [value]="code.name">
+             <div>
+              {{code.name}}
+             </div>
+              </ion-select-option>
+          </ion-select>
+          </ion-col>
+          <ion-col size="8">
+            <ion-item>
+              <ion-label position="floating">Mobile</ion-label>
+              <ion-input type="tel" formControlName="mobile"></ion-input>
+            </ion-item>
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="submitted && f1.mobile.errors" class="invalid-feedback" style="margin-top: 10px;">
+        <div *ngIf="f1.mobile.errors.required">Mobile is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f1.email.errors" class="invalid-feedback">
+        <div *ngIf="f1.email.errors.required">Email is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Address</ion-label>
+          <ion-input formControlName="address"></ion-input>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f1.address.errors" class="invalid-feedback">
+        <div *ngIf="f1.address.errors.required">Address is required</div>
+      </div>
+
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [type]="passwordTypeA" formControlName="password"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='password'"
+          name="eye-off-outline"
+          (click)="hideShowA()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='text'"
+          name="eye-outline"
+          (click)="hideShowA()"
+        ></ion-icon>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f1.password.errors" class="invalid-feedback">
+        <div *ngIf="f1.password.errors.required">Password is required</div>
+      </div>
+
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" [type]="passwordTypeB" formControlName="confirmPassword"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='password'"
+          name="eye-off-outline"
+          (click)="hideShowB()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='text'"
+          name="eye-outline"
+          (click)="hideShowB()"
+        ></ion-icon>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f1.confirmPassword.errors" class="invalid-feedback">
+        <div *ngIf="f1.confirmPassword.errors.required">Confirm password is required</div>
+      </div>
+
+      <div>
+        <p class="divider">
+        </p>
+      </div>
+
+
+      <ion-row>
+        <ion-col size="2" class="termsCheck">
+          <ion-checkbox checked={{newsStatus}} (ionChange)="newsCheck()"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10" class="termsText"> To send newsletter regarding marketing offers and promotions </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="2" class="termsCheck">
+          <ion-checkbox checked={{emailStatus}} (ionChange)="emailCheck()"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10" class="termsText"> Consent to contact via email/call/or sms about booking and transactions </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" class="termsCheck">
+          <ion-checkbox checked={{termStatus}} (ionChange)="termsCheck()"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10" class="termsText"> I have read and understood the <u class="termsLink"> Terms and conditions</u></ion-col>
+      </ion-row>
+      <div *ngIf="!termToggle" class="invalid-feedback" style="margin-top: 10px;">
+        <div>Please accept the terms and conditions</div>
+      </div>
+
+      <div style="text-align: center;">
+      <ion-button class="registerBtn" type="submit">Register</ion-button>
+      <p style="font-size: 14px;">I have a ShiftCar Rental Account. <span style="color:#1D97DB;" (click)="login()">Back to Login</span> </p>
+    </div>
+
+    </div>
+  </form>
+
+
+
+
+  <form [formGroup]="registerForm2" (ngSubmit)="onSubmit2()" *ngIf="layoutChange=='personal'">
+
+    <div class="input-group">
+
+      <div class="input-field">
+
+        <ion-row>
+          <ion-col size="4">
+
+            <ion-select
+            class="selection"
+            interface="popover"
+            [(ngModel)]="prefix"
+            placeholder="{{prefix}}" [ngModelOptions]="{standalone: true}"
+            (ionChange)="selectPrefix($event)"
+          >
+            <ion-select-option
+            *ngFor="let p of prefixes; index as i;"
+              [value]="p.name">
+             <div>
+              {{p.name}}
+             </div>
+              </ion-select-option>
+          </ion-select>
+
+          </ion-col>
+
+          <ion-col size="8">
+
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="firstName"></ion-input>
+        </ion-item>
+
+         </ion-col>
+
+
+        </ion-row>
+
+      </div>
+      <div *ngIf="submitted && f2.firstName.errors" class="invalid-feedback">
+        <div *ngIf="f2.firstName.errors.required">First Name is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="lastName"></ion-input>
+        </ion-item>
+      </div>
+
+      <div *ngIf="submitted && f2.lastName.errors" class="invalid-feedback">
+        <div *ngIf="f2.lastName.errors.required">Last Name is required</div>
+      </div>
+
+      <!-- <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Debitor Code</ion-label>
+          <ion-input formControlName="debitorCode"></ion-input>
+        </ion-item>
+      </div> -->
+
+
+      <!-- <div class="input-field">
+        <ion-select
+        class="selection"
+        interface="popover"
+        [(ngModel)]="nationality"
+        placeholder="{{nationality}}" [ngModelOptions]="{standalone: true}"
+        (ionChange)="selectNationality($event.target.value)"
+      >
+        <ion-select-option
+        *ngFor="let n of nationalities; index as i;"
+          [value]="n.name">
+         <div>
+          {{n.name}}
+         </div>
+          </ion-select-option>
+      </ion-select>
+      </div>
+   -->
+
+      <div class="input-field">
+
+        <ion-row>
+          <ion-col size="4">
+            <ion-select
+            class="selection"
+            interface="popover"
+            [(ngModel)]="mobileCode"
+            placeholder="{{mobileCode}}" [ngModelOptions]="{standalone: true}"
+            (ionChange)="selectMobilecode($event)"
+          >
+            <ion-select-option
+            *ngFor="let code of mobileCodes; index as i;"
+              [value]="code.name">
+             <div>
+              {{code.name}}
+             </div>
+              </ion-select-option>
+          </ion-select>
+          </ion-col>
+          <ion-col size="8">
+            <ion-item>
+              <ion-label position="floating">Mobile</ion-label>
+              <ion-input type="tel" formControlName="mobile"></ion-input>
+            </ion-item>
+
+
+
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="submitted && f2.mobile.errors" class="invalid-feedback" style="margin-top: 10px;">
+        <div *ngIf="f2.mobile.errors.required">Mobile is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f2.email.errors" class="invalid-feedback">
+        <div *ngIf="f2.email.errors.required">Email is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Address</ion-label>
+          <ion-input formControlName="address"></ion-input>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f2.address.errors" class="invalid-feedback">
+        <div *ngIf="f2.address.errors.required">Address is required</div>
+      </div>
+
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" [type]="passwordTypeA" formControlName="password"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='password'"
+          name="eye-off-outline"
+          (click)="hideShowA()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='text'"
+          name="eye-outline"
+          (click)="hideShowA()"
+        ></ion-icon>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f2.password.errors" class="invalid-feedback">
+        <div *ngIf="f2.password.errors.required">Password is required</div>
+      </div>
+
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" [type]="passwordTypeB" formControlName="confirmPassword"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='password'"
+          name="eye-off-outline"
+          (click)="hideShowB()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='text'"
+          name="eye-outline"
+          (click)="hideShowB()"
+        ></ion-icon>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f2.confirmPassword.errors" class="invalid-feedback">
+        <div *ngIf="f2.confirmPassword.errors.required">Confirm password is required</div>
+      </div>
+
+      <div>
+        <p class="divider">
+        </p>
+      </div>
+
+
+      <ion-row>
+        <ion-col size="2" class="termsCheck">
+          <ion-checkbox checked={{newsStatus}} (ionChange)="newsCheck()"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10" class="termsText"> To send newsletter regarding marketing offers and promotions </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="2" class="termsCheck">
+          <ion-checkbox checked={{emailStatus}} (ionChange)="emailCheck()"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10" class="termsText"> Consent to contact via email/call/or sms about booking and transactions </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" class="termsCheck">
+          <ion-checkbox checked={{termStatus}} (ionChange)="termsCheck()"></ion-checkbox>
+        </ion-col>
+        <ion-col size="10" class="termsText"> I have read and understood the <u class="termsLink"> Terms and conditions</u></ion-col>
+      </ion-row>
+      <div *ngIf="!termToggle" class="invalid-feedback" style="margin-top: 10px;">
+        <div>Please accept the terms and conditions</div>
+      </div>
+
+      <div style="text-align: center;">
+      <ion-button class="registerBtn" type="submit">Register</ion-button>
+      <p style="font-size: 14px;">I have a ShiftCar Rental Account. <span style="color:#1D97DB;" (click)="login()">Back to Login</span> </p>
+    </div>
+
+    </div>
+  </form>
+
+
+  <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <div class="input-group">
+
+    <div *ngIf="layoutChange=='corporate'">
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Contact Name</ion-label>
+        <ion-input formControlName="contactName"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Contact Title</ion-label>
+        <ion-input formControlName="contactTitle"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Company Name</ion-label>
+        <ion-input formControlName="companyName"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Position</ion-label>
+        <ion-input formControlName="position"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div *ngIf="layoutChange=='personal'">
+    <div class="input-field">
+
+      <ion-row>
+        <ion-col size="4">
+
+          <ion-select
+          class="selection"
+          interface="popover"
+          [(ngModel)]="prefix"
+          placeholder="{{prefix}}" [ngModelOptions]="{standalone: true}"
+          (ionChange)="selectPrefix($event.target.value)"
+        >
+          <ion-select-option
+          *ngFor="let p of prefixes; index as i;"
+            [value]="p.name">
+           <div>
+            {{p.name}}
+           </div>
+            </ion-select-option>
+        </ion-select>
+
+        </ion-col>
+
+        <ion-col size="8">
+
+      <ion-item>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input formControlName="firstName"></ion-input>
+      </ion-item>
+
+       </ion-col>
+
+      </ion-row>
+
+    </div>
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input formControlName="lastName"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-field">
+      <ion-select
+      class="selection"
+      interface="popover"
+      [(ngModel)]="nationality"
+      placeholder="{{nationality}}" [ngModelOptions]="{standalone: true}"
+      (ionChange)="selectNationality($event.target.value)"
+    >
+      <ion-select-option
+      *ngFor="let n of nationalities; index as i;"
+        [value]="n.name">
+       <div>
+        {{n.name}}
+       </div>
+        </ion-select-option>
+    </ion-select>
+    </div>
+
+  </div>
+
+    <div class="input-field">
+
+      <ion-row>
+        <ion-col size="4">
+          <ion-select
+          class="selection"
+          interface="popover"
+          [(ngModel)]="mobileCode"
+          placeholder="{{mobileCode}}" [ngModelOptions]="{standalone: true}"
+          (ionChange)="selectMobilecode($event.target.value)"
+        >
+          <ion-select-option
+          *ngFor="let code of mobileCodes; index as i;"
+            [value]="code.name">
+           <div>
+            {{code.name}}
+           </div>
+            </ion-select-option>
+        </ion-select>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item>
+            <ion-label position="floating">Mobile</ion-label>
+            <ion-input type="tel" formControlName="mobile"></ion-input>
+          </ion-item>
+
+          <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback" style="margin-top: 10px;">
+            <div *ngIf="f.mobile.errors.required">Mobile is required</div>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+    </div>
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+    </div>
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Address</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
+    </div>
+    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+      <div *ngIf="f.address.errors.required">Address is required</div>
+    </div>
+
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </div>
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+    </div>
+
+
+    <div class="input-field">
+      <ion-item>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+    </div>
+    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+      <div *ngIf="f.confirmPassword.errors.required">Confirm password is required</div>
+    </div>
+
+    <div>
+      <p class="divider">
+      </p>
+    </div>
+
+
+    <ion-row>
+      <ion-col size="2" class="termsCheck">
+        <ion-checkbox checked={{newsStatus}} (ionChange)="newsCheck()"></ion-checkbox>
+      </ion-col>
+      <ion-col size="10" class="termsText"> To send newsletter regarding marketing offers and promotions </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col size="2" class="termsCheck">
+        <ion-checkbox checked={{emailStatus}} (ionChange)="emailCheck()"></ion-checkbox>
+      </ion-col>
+      <ion-col size="10" class="termsText"> Consent to contact via email/call/or sms about booking and transactions </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="2" class="termsCheck">
+        <ion-checkbox checked={{termStatus}} (ionChange)="termsCheck()"></ion-checkbox>
+      </ion-col>
+      <ion-col size="10" class="termsText"> I have read and understood the <u class="termsLink"> Terms and conditions</u></ion-col>
+    </ion-row>
+    <div *ngIf="!termToggle" class="invalid-feedback" style="margin-top: 10px;">
+      <div>Please accept the terms and conditions</div>
+    </div>
+
+    <div style="text-align: center;">
+    <ion-button class="registerBtn" type="submit">Register</ion-button>
+    <p style="font-size: 14px;">I have a ShiftCar Rental Account. <span style="color:#1D97DB;" (click)="login()">Back to Login</span> </p>
+  </div>
+
+  </div>
+</form> -->
+</ion-content>

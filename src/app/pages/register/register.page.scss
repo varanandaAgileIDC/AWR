@@ -1,0 +1,71 @@
+h6, h5 { text-align: center; }
+h5 { color: #1D97DB; margin-bottom: 30px; }
+.segmentBtn
+{
+    --background: #1D97DB;
+    --background-checked:#204d74;
+    margin: 20px;
+    --border-radius: 10px;
+    color: white;
+    --indicator-color:none;
+    text-transform: none;
+}
+.input-field {
+    background: #EEF4FA;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+ion-item {
+    --ion-background-color: transparent;
+    --border-color: transparent;
+    --color: #484D52;
+}
+
+ion-item {
+    --highlight-color-focused: transparent;
+}
+.input-group
+{
+    padding: 20px;
+}
+  .divider
+  {
+    height: 1px;background-color: gray;width: 100%;margin-top:15px;
+  }
+  .termsCheck
+{
+
+  text-align: right;
+
+}
+.termsText
+{
+
+  text-align: left;
+  font-size: 14px;
+
+}
+.termsLink
+{
+  color:#1D97DB;
+}
+.registerBtn
+{
+    margin-top: 20px;
+    --background: #1D97DB;
+    --box-shadow:none;
+    --border-radius: 14px;
+    width: 150px;
+    text-transform: capitalize;
+}
+.selection
+{
+    margin-top: 10px;
+    --placeholder-color: black;
+    --placeholder-opacity: 1 !important;
+}
+.eyeIcon
+{
+   margin-top: 20px;
+}

@@ -1,0 +1,70 @@
+
+<ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Edit Profile
+    </ion-title>
+    <ion-button class="notifications-btn">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="login-header">
+    <div class="detail-header">
+        <ion-back-button (click)="back()" class="prev-icon"></ion-back-button>
+      Update Profile
+    </div>
+  </div> -->
+
+  <img
+  [src]="apiService.profileImage"
+  class="profileImage"
+  (click)="pickImage()"
+/>
+
+    <ion-item class="firstname">
+      <ion-input
+        placeholder="First Name"
+        [(ngModel)]="users['first_name']"
+      ></ion-input>
+      <ion-icon name="create-outline" slot="end"></ion-icon>
+    </ion-item>
+  
+    <ion-item>
+      <ion-input
+        placeholder="Last Name"
+        [(ngModel)]="users['last_name']"
+      ></ion-input>
+      <ion-icon name="create-outline" slot="end"></ion-icon>
+    </ion-item>
+  
+    <ion-item>
+      <ion-input
+        placeholder="Email"
+        [(ngModel)]="users['email']"
+      ></ion-input>
+      <ion-icon name="mail-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item class="mobile">
+      <ion-input
+        type="tel"
+        placeholder="Mobile"
+        [(ngModel)]="users['mobile']"
+      ></ion-input>
+      <ion-icon name="phone-portrait-outline" slot="end"></ion-icon>
+    </ion-item>
+    <br />
+    <div style="text-align: center;">
+      <ion-button class="updateBtn">Update</ion-button>
+    </div>
+ 
+</ion-content>
+
+</ion-content>

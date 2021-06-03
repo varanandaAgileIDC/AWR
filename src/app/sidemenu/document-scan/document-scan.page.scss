@@ -1,0 +1,27 @@
+ion-content {
+    --background: none;
+    background-image: url('/assets/body-bg.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    --box-shadow:none;
+    color: #fff;
+}
+.header-md::after {
+    display: none;
+}
+.scanBtn {
+   
+    margin-top: 20px;
+    --background: #1D97DB;
+    --box-shadow:none;
+    --border-radius: 14px;
+    width: 80%;
+    height: 35px;
+    text-transform: none;
+  
+  }

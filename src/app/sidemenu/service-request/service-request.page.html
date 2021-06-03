@@ -1,0 +1,65 @@
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Service Request
+      </ion-title>
+      <ion-button class="notifications-btn">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+  <ion-list lines="none" style="background: transparent;">
+
+    <!-- <ion-item style="--background:transparent;border-radius: 20px;margin-left: 5px;margin-right: 5px; border: 1px solid #1D97DB;margin: 20px;">
+      <ion-select style="width: 100%;" interface="popover"  placeholder="Select Vehicle" class="selection">
+        <ion-select-option [value]="vehicle" *ngFor="let vehicle of vehicleNumbers">{{vehicle.name}}</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+
+
+    <div class="input-field location-field">
+      <div class="blue-bg-input"><ion-icon name="car-sport-outline"></ion-icon></div>
+      <ion-item (click)="selectVehicle()">
+        <ion-label position="floating">Select Vehicle</ion-label>
+        <ion-input type="text" readonly *ngIf="!apiService.selectedVehicle"></ion-input>
+        <ion-input type="text" readonly *ngIf="apiService.selectedVehicle" [(ngModel)]="apiService.selectedVehicle['name']"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-field location-field">
+      <div class="blue-bg-input"><ion-icon name="calendar-outline"></ion-icon></div>
+      <ion-item (click)="pickDate()">
+        <ion-label position="floating">Select Date</ion-label>
+        <ion-input type="text" readonly [(ngModel)]="serviceDate"></ion-input>
+      </ion-item>
+    </div>
+
+    <ion-item style="--background:#e7edf5;border-radius: 20px;margin: 20px;">
+      
+      <ion-label position="floating" style="color:black;">Description</ion-label>
+      <ion-textarea [(ngModel)]="description"></ion-textarea>
+
+    </ion-item>
+
+    <div style="text-align: center;">
+      <ion-button class="submitBtn" (click)="submit()">
+        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        Submit
+      </ion-button>
+
+    </div>
+
+  </ion-list>
+  
+  </ion-content>
+  
+  </ion-content>
+  

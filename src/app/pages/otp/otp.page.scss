@@ -1,0 +1,30 @@
+h6, h5 ,p { text-align: center; }
+h5 { color: #1D97DB; margin-bottom: 30px; }
+.input-field {
+    background: #EEF4FA;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+}
+
+ion-item {
+    --ion-background-color: transparent;
+    --border-color: black;
+    --color: #484D52;
+}
+ion-input
+{
+    text-align: center;
+}
+.validateBtn {
+   
+        margin-top: 20px;
+        --background: #1D97DB;
+        --box-shadow:none;
+        --border-radius: 14px;
+        width: 80%;
+        height: 55px;
+        text-transform: none;
+    
+ }

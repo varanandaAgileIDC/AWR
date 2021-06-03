@@ -1,0 +1,114 @@
+
+<div>
+  <img src="../../../assets/login-banner.png" style="margin-top: -2px;"/>
+</div>
+
+<ion-content>
+
+  <h5>Let's Go Anywhere, Anytime</h5>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="input-group">
+
+      <div class="input-field">
+        <ion-item>
+          <ion-label position="floating">Email address</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+      </div>
+
+      <div class="input-field">
+        <ion-item class="password">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+      </div>
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+      </div>
+
+    </div>
+
+    <!-- <ion-button class="ion-color-primary" type="submit" expand="block">Continue</ion-button> -->
+
+    <ion-button class="ion-color-primary" type="submit" expand="block">Login</ion-button>
+
+    <div style="text-align: center;color:#1D97DB;margin-top:-10px;"> 
+     <b> <p (click)="forgotPassword()">Forgot Password</p> </b> 
+    </div>
+
+    <h6>Or</h6>
+
+    <!-- <p style="font-size: 14px;text-align: center;">if you don't have an account please <u style="color:#1D97DB;">Register </u></p> -->
+
+    <p style="font-size: 14px;text-align: center;">if you don't have an account please</p>
+
+    <ion-button class="ion-color-primary" (click)="register()" expand="block">Register</ion-button>
+
+  </form>
+</ion-content>
+
+<!-- <div>
+  <img src="/assets/login-car.png" class="topImage"/>
+  <ion-card>
+    <ion-card-header style="text-align: center;">
+      <ion-card-title class="title">USER LOGIN</ion-card-title>
+      <ion-card-subtitle class="subTitle">I have a Shift Car Rental Account</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" padding-right>
+        <ion-item class="username">
+          <ion-input formControlName="email" placeholder="Enter Email"></ion-input>
+          <ion-icon name="mail-outline" slot="end"></ion-icon>
+        </ion-item>
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+        </div>
+        <br />
+        <ion-item class="password">
+          <ion-input
+          [type]="passwordType"
+            placeholder="Enter Password"
+            formControlName="password"
+          ></ion-input>
+          <ion-icon
+          slot="end"
+          *ngIf="passwordType=='password'"
+          name="eye-off-outline"
+          (click)="toggle()"
+        ></ion-icon>
+        <ion-icon
+          slot="end"
+          *ngIf="passwordType=='text'"
+          name="eye-outline"
+          (click)="toggle()"
+        ></ion-icon>
+        </ion-item>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+        <br />
+        <div style="text-align: center;">
+        <ion-button type="submit" class="loginBtn">Login</ion-button>
+      </div>
+    
+        <div>
+          <p class="divider">
+          </p>
+        </div>
+
+        <div style="text-align: center;">
+          <ion-button class="loginBtn registerBtn">Register</ion-button>
+        </div>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div> -->
+
+
