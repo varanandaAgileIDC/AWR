@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class ApiService {
 
-  base_path = 'http://3.7.140.167:8091/';
+  base_path = 'http://35.178.221.121:8091/';//'http://3.7.140.167:8091/';
   successResponse:any;
   errorResponse:any;
   isLoading = false;
@@ -44,12 +44,12 @@ export class ApiService {
 
   // Handle API errors
   handleError(error: HttpErrorResponse) {
-  
+
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
-     
+
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       console.error(
@@ -76,7 +76,7 @@ export class ApiService {
     }
 
     postRequest (service,data): Observable<object> {
-     
+
       return this.http.post<object>(this.base_path+service,data,this.httpOptions)
         .pipe(
           retry(),
@@ -86,17 +86,24 @@ export class ApiService {
 
 
     getMethod(service,data) {
-   
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'String-Check': '000c7d69c01e7268adc1ab0ba1f6f1b7777b4cfd13da8e29e4e1bfc2cb0eb2b63fb1127d99810f0d'
+        })
+      }
+
       return new Promise((resolve, reject) => {
         this.showLoader();
-        this.http.get(this.base_path+service+data).subscribe(response => {
-      
+        this.http.get(this.base_path+service+data,httpOptions).subscribe(response => {
+
         this.hideLoader();
         resolve(response);
         },
         (error) =>
         {
-         
+
           this.hideLoader();
           reject(error);
         });
@@ -104,17 +111,24 @@ export class ApiService {
   }
 
      postMethod(service,data) {
-   
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'String-Check': '000c7d69c01e7268adc1ab0ba1f6f1b7777b4cfd13da8e29e4e1bfc2cb0eb2b63fb1127d99810f0d'
+        })
+      }
+
       return new Promise((resolve, reject) => {
         this.showLoader();
-        this.http.post(this.base_path+service,data).subscribe(response => {
-      
+        this.http.post(this.base_path+service,data,httpOptions).subscribe(response => {
+
         this.hideLoader();
         resolve(response);
         },
         (error) =>
         {
-         
+
           this.hideLoader();
           reject(error);
         });

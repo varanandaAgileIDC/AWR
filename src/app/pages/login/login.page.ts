@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, MenuController, Platform } from '@ionic/angular';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginPage implements OnInit {
     private platform:Platform,
     private alertCtrl:AlertController,
     private formBuilder:FormBuilder,
-    private menuCtrl:MenuController) { }
+    private menuCtrl:MenuController,
+    private appComponent:AppComponent) { }
 
   ngOnInit() {
 
@@ -51,13 +53,13 @@ export class LoginPage implements OnInit {
   }
 
   ionViewDidEnter(){
-   
+
     //this.register();
     // this.otp();
     // this.awr();
 
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-    
+
       console.log("Back press handler!");
       if (this.router["routerState"].snapshot.url == "/login")
       {
@@ -75,27 +77,29 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit() {
-   
+
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     } else {
-    
+
       console.log(this.loginForm.value);
       this.login(this.loginForm.value);
     }
   }
 
   login(formData) {
-  
+
     let PostData = {
       email:formData.email,
       password:formData.password,
-      usertype:"customer"
+      usertype:"customer",
+      gcm_id:this.appComponent.fcmToken
     }
 
+console.log("login request",PostData)
     this.apiService.postMethod("api/login?",PostData).then((response) => {
-      
+
       console.log(response);
 
       if(response["userdata"].status==0)
@@ -111,7 +115,7 @@ export class LoginPage implements OnInit {
 
       },
       (error) => {
-    
+
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });
@@ -137,7 +141,7 @@ export class LoginPage implements OnInit {
   // }
 
   // awr() {
-   
+
   //   const httpOptions = {};
   //   this.http
   //     .post("http://3.7.140.167:8086/api/register?customer_type=personal&first_name=Sunil s&last_name=kumar&mobile=9999999999&email=sunil5555@agileidc.com&nationality=&address=kurubarahalli&password=test1234&confirmpassword=test1234&smsemail=0&terms=1&newsletter=0&contact_name=Sunil Kumar N&contact_title=Mr&company_name=AgileIDC&position=Manager", httpOptions)
@@ -185,21 +189,21 @@ export class LoginPage implements OnInit {
         {
           name: 'email',
           placeholder: 'Please enter registered email',
-          
+
         },
       ],
       buttons: [
         {
           text: 'Cancel',
           handler: (data: any) => {
-           
+
             console.log('Canceled', data);
           }
         },
         {
           text: 'Done',
           handler: (data: any) => {
-           
+
             console.log('sending Information', data);
 
             let valideMail = this.validateEmail(data.email);
@@ -241,7 +245,7 @@ export class LoginPage implements OnInit {
     }
 
     this.apiService.postMethod("api/forgot-password?",PostData).then((response) => {
-      
+
       console.log(response);
       // if(response["status"]=="S")
       // {
@@ -263,7 +267,7 @@ export class LoginPage implements OnInit {
   //   private http:HttpClient,
   //   private formBuilder:FormBuilder) { }
 
-  // ngOnInit() 
+  // ngOnInit()
   // {
   //   this.loginForm = this.formBuilder.group({
   //     email: ["", Validators.required],
@@ -318,7 +322,7 @@ export class LoginPage implements OnInit {
   // }
 
   // awr() {
-   
+
   //   const httpOptions = {};
   //   this.http
   //     .post("http://3.7.140.167:8086/api/register?customer_type=personal&first_name=Sunil s&last_name=kumar&mobile=9999999999&email=sunil5555@agileidc.com&nationality=&address=kurubarahalli&password=test1234&confirmpassword=test1234&smsemail=0&terms=1&newsletter=0&contact_name=Sunil Kumar N&contact_title=Mr&company_name=AgileIDC&position=Manager", httpOptions)

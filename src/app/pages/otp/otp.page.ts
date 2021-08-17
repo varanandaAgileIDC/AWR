@@ -26,7 +26,7 @@ export class OtpPage implements OnInit {
   constructor(private activateRoute:ActivatedRoute,
     private apiService:ApiService,
     private router:Router,
-    private platform:Platform) 
+    private platform:Platform)
   {
 
     let details = this.activateRoute.snapshot.params["data"];
@@ -42,11 +42,11 @@ export class OtpPage implements OnInit {
     this.apiService.interval =  interval(1000).subscribe(x => {
 
       if(this.timeLeft > 0) {
-      
+
         this.timeLeft--;
         this.otpBtn = true
       } else if(this.timeLeft == 0){
-       
+
         this.otpBtn = false
         this.apiService.interval.unsubscribe();
       }
@@ -55,7 +55,7 @@ export class OtpPage implements OnInit {
 
 
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      
+
       console.log("Back press handler!");
      this.router.navigate(["/register"]);
     });
@@ -69,18 +69,18 @@ export class OtpPage implements OnInit {
     }
 
     this.apiService.postMethod("api/resendotp?",PostData).then((response) => {
-   
+
       console.log(response);
 
       if(response['status']=='S')
-    
+
         this.apiService.nativeToast(response["message"]);
 
         this.otpInterval();
 
       },
       (error) => {
-    
+
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });
@@ -94,11 +94,11 @@ export class OtpPage implements OnInit {
     this.apiService.interval =  interval(1000).subscribe(x => {
 
       if(this.timeLeft > 0) {
-      
+
         this.timeLeft--;
         this.otpBtn = true
       } else if(this.timeLeft == 0){
-       
+
         this.otpBtn = false
         this.apiService.interval.unsubscribe();
       }
@@ -119,7 +119,7 @@ export class OtpPage implements OnInit {
     }
 
     this.apiService.postMethod("api/validateotp?",PostData).then((response) => {
-   
+
       console.log(response);
 
       if(response['status']=='S')
@@ -135,7 +135,7 @@ export class OtpPage implements OnInit {
           localStorage.setItem("AWRLogin", JSON.stringify(response["user"]));
           this.router.navigate(['/tabs']);
         }
-       
+
       }
       else
       {
@@ -144,7 +144,7 @@ export class OtpPage implements OnInit {
 
       },
       (error) => {
-  
+
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

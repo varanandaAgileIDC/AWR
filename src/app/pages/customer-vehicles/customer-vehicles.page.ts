@@ -28,9 +28,9 @@ export class CustomerVehiclesPage implements OnInit {
     this.vehicles();
 
     }
-   
+
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      
+
       console.log("Back press handler!");
 
       if(this.apiService.fromWhichPage=="service-request")
@@ -51,7 +51,7 @@ export class CustomerVehiclesPage implements OnInit {
 
   vehicles() {
     this.apiService.getMethod("api/customervehicles/"+this.loginDB["userdata"].id,"").then((response) => {
-      debugger
+
       console.log(response);
       if(response["status"]="S")
       {
@@ -59,7 +59,7 @@ export class CustomerVehiclesPage implements OnInit {
       }
       },
       (error) => {
-      debugger
+
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });
@@ -78,7 +78,7 @@ export class CustomerVehiclesPage implements OnInit {
     {
       this.router.navigate(["/break-down"]);
     }
-    
+
 
   }
 

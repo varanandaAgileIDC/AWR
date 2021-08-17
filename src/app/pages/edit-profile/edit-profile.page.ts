@@ -25,8 +25,6 @@ export class EditProfilePage {
     let loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
         if(loginDB)
         {
-
-          debugger
           this.users = loginDB["userdata"];
 
         }
@@ -35,7 +33,7 @@ export class EditProfilePage {
 
   ionViewDidEnter(){
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-     
+
       console.log("Back press handler!");
       if (this.router["routerState"].snapshot.url == "/tabs/tab1")
       {
@@ -45,7 +43,7 @@ export class EditProfilePage {
       {
         this.router.navigate(["/tabs"]);
       }
-     
+
     });
   }
 
@@ -115,7 +113,7 @@ export class EditProfilePage {
       })
       .then(
         (imageData) => {
-        
+
           console.log(imageData);
 
           if (imageData == null || imageData == "") {

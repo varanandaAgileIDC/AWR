@@ -197,12 +197,12 @@ export class BreakDownPage implements OnInit {
               }
 
           }
-          debugger
+
 
           console.log('Images: ' + this.images);
 
       }, (err) => { });
-    debugger
+
 
   }
 
@@ -321,10 +321,8 @@ pickDate()
   lookUp()
 {
 
-
-debugger
   this.apiService.getMethod("api/lookupvalues/BREAKDOWN_TYPE","").then((response) => {
-    debugger
+
     console.log(response);
     if(response["status"]="S")
     {
@@ -334,7 +332,7 @@ debugger
     }
     },
     (error) => {
-    debugger
+
     console.log(error);
     this.apiService.nativeToast(error.error.message);
     });
@@ -344,9 +342,9 @@ debugger
 selectType(event)
   {
 
-    debugger
+
     this.breakdownTypeId = event.target.value.k;
-    debugger
+
 
   }
 
@@ -364,9 +362,9 @@ submit()
     images:this.images,
     description:this.description,
   }
-debugger
+
   this.apiService.postMethod("api/vehiclebreakdown?",PostData).then((response) => {
-    debugger
+
     console.log(response);
     if(response["status"]="S")
     {
@@ -375,7 +373,7 @@ debugger
     }
     },
     (error) => {
-    debugger
+
     console.log(error);
     this.apiService.nativeToast(error.error.message);
     });

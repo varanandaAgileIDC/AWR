@@ -62,12 +62,12 @@ export class ServiceRequestPage implements OnInit {
   }
 
   ionViewDidEnter(){
-   
+
     this.loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
-    
+
 
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      
+
       console.log("Back press handler!");
      this.router.navigate(["/service-list"]);
     });
@@ -94,22 +94,22 @@ export class ServiceRequestPage implements OnInit {
         .then(
           (response) => {
             let date = new Date();
-  
+
             let month = response.getMonth()+1;
             let month1 = date.getMonth()+1;
-  
+
             if (response.getDate() == date.getDate() && month==month1)
             {
               response = date;
             }
-  
+
             if (response < date) {
               this.apiService.nativeToast(
                 "Please select today or future date"
               );
             } else {
               this.startDate = response;
-  
+
            var d = (this.startDate.getDate() < 10 ? '0' : '') + this.startDate.getDate();
            var m = this.getMonth( this.startDate);
            var y = this.startDate.getFullYear();
@@ -121,11 +121,11 @@ export class ServiceRequestPage implements OnInit {
            let time = moment(response, "HH-MM A");
            let momentTime = time.format("hh:mm a");
 
-           this.serviceDate = momentDate + ", " + momentTime; 
-           
+           this.serviceDate = momentDate + ", " + momentTime;
+
 
             }
-  
+
           },
           (error) => {
             console.log("error response", error);
@@ -148,9 +148,9 @@ export class ServiceRequestPage implements OnInit {
       service_request_date:this.requestDate,
       description:this.description
     }
-debugger
+
     this.apiService.postMethod("api/servicerequest?",PostData).then((response) => {
-      debugger
+
       console.log(response);
       if(response["status"]="S")
       {
@@ -159,7 +159,7 @@ debugger
       }
       },
       (error) => {
-      debugger
+
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

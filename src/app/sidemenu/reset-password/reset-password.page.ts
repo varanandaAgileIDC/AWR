@@ -46,7 +46,7 @@ export class ResetPasswordPage implements OnInit {
     }
 
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-  
+
       console.log("Back press handler!");
 
       if (this.router["routerState"].snapshot.url == "/tabs/tab1")
@@ -104,13 +104,13 @@ export class ResetPasswordPage implements OnInit {
 
 
   onSubmit() {
-  
+
     this.submitted = true;
     console.log(this.resetForm.controls.errors);
     if (this.resetForm.invalid) {
       return;
     } else {
-    
+
       console.log(this.resetForm.value);
       this.reset(this.resetForm.value);
     }
@@ -118,16 +118,16 @@ export class ResetPasswordPage implements OnInit {
 
 
   reset(formData) {
-  
+
     let PostData = {
       id:this.users["id"],
       current_password:formData.currentPassword,
       new_password:formData.newPassword,
       confirm_password:formData.confirmPassword
     }
-      
+
     this.apiService.postMethod("api/change-password?",PostData).then((response) => {
-   
+
       console.log(response);
       if(response["status"]=="S")
       {
@@ -146,12 +146,12 @@ export class ResetPasswordPage implements OnInit {
         {
           this.apiService.nativeToast(response["message"]);
         }
-       
+
       }
 
       },
       (error) => {
-      
+
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

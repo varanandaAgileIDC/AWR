@@ -15,6 +15,7 @@ export class AppComponent {
 
   profileImage:any;
   name:any;
+  fcmToken:any;
 
   constructor(
     private platform: Platform,
@@ -32,21 +33,22 @@ export class AppComponent {
       this.splashScreen.hide();
       this.fcm.getToken().then((token) => {
         console.log("ios fcm key check", token);
+        this.fcmToken = token;
         this.fcm.getInitialPushPayload().then((data) => {
-         
+
           console.log("ios fcm key check", data);
         });
       });
       this.fcm.onTokenRefresh().subscribe((token) => {
-       
+
         console.log("fcm token", token);
       });
 
       this.fcm.onNotification().subscribe((data) => {
-       
+
         console.log("data",data);
       });
-  
+
       let matrixData = JSON.parse(localStorage.getItem("matrixDetails"));
     if(matrixData)
     {
@@ -69,7 +71,7 @@ export class AppComponent {
         //   JSON.stringify("xyz")
         // ]);
       }
-  
+
     });
   }
 

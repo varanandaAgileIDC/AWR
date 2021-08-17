@@ -55,14 +55,14 @@ export class BreakdownListPage implements OnInit {
       //   date:"02-06-2021 02:30 PM",
       //   description:"Engine Service"
       // }]
-  
+
     }
-  
+
 
   ionViewDidEnter(){
-   
+
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      
+
       console.log("Back press handler!");
      this.router.navigate(["/tabs"]);
     });
@@ -70,7 +70,7 @@ export class BreakdownListPage implements OnInit {
 
   serviceRequest()
   {
-    debugger
+
     this.apiService.selectedVehicle = "";
     this.router.navigate(["/break-down"]);
   }

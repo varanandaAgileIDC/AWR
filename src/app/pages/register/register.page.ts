@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, Platform } from '@ionic/angular';
+import { AppComponent } from 'src/app/app.component';
 import { ApiService } from 'src/app/services/api.service';
 import { MustMatch } from './must-match.validator';
 
@@ -41,7 +42,8 @@ export class RegisterPage implements OnInit {
     private apiService:ApiService,
     private platform:Platform,
     private alertCtrl:AlertController,
-    private formBuilder:FormBuilder)
+    private formBuilder:FormBuilder,
+    private appComponent:AppComponent)
   {
 
     this.layoutChange = "corporate";
@@ -222,7 +224,7 @@ export class RegisterPage implements OnInit {
   selectPrefix(event)
   {
     this.prefix = event.target.value;
-    debugger
+
   }
   selectNationality(value)
   {
@@ -296,7 +298,8 @@ export class RegisterPage implements OnInit {
     // contact_name:formData.contactName,
     // contact_title:formData.contactTitle,
     company_name:formData.companyName,
-    position:formData.position
+    position:formData.position,
+    gcm_id:this.appComponent.fcmToken
 
   }
 }
@@ -320,10 +323,13 @@ else
     smsemail:this.smsemail,
     termsandconditions:this.terms,
     newsletter:this.newsletter,
+    gcm_id:this.appComponent.fcmToken
 
   }
 
 }
+
+console.log("register request",PostData);
 
     this.apiService.postMethod("api/register?",PostData).then((response) => {
 

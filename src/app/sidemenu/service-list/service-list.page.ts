@@ -59,9 +59,9 @@ export class ServiceListPage implements OnInit {
   }
 
   ionViewDidEnter(){
-   
+
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      
+
       console.log("Back press handler!");
      this.router.navigate(["/tabs"]);
     });
@@ -69,7 +69,6 @@ export class ServiceListPage implements OnInit {
 
   serviceRequest()
   {
-    debugger
     this.router.navigate(["/service-request"]);
   }
 
